@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string>SDOF Solver</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="sdof_dialog">
+      <property name="horizontalSpacing">
+       <number>6</number>
+      </property>
+      <item row="0" column="0" rowspan="2">
+       <widget class="QGroupBox" name="parameters_groupBox">
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Parameters:</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>137</width>
+           <height>520</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="parameters_gridLayout">
+          <item row="1" column="0">
+           <layout class="QVBoxLayout" name="solver_methods_verticalLayout">
+            <item>
+             <widget class="QLabel" name="solver_methods_label">
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Solver methods:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="solve_RungeKutta4th_checkBox">
+              <property name="text">
+               <string>Runge Kutta 4th</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="solve_ForwardEuler_checkBox">
+              <property name="text">
+               <string>Forward Euler</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="solve_LeapFrog_checkBox">
+              <property name="text">
+               <string>Leap Frog</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="solve_Newmark_checkBox">
+              <property name="text">
+               <string>Newmark</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton">
+              <property name="text">
+               <string>Solve</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="0">
+           <layout class="QVBoxLayout" name="parameters_verticalLayout">
+            <item>
+             <widget class="QLabel" name="mass_label">
+              <property name="text">
+               <string>Mass - m [kg]</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="mass_lineEdit">
+              <property name="maximumSize">
+               <size>
+                <width>133</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>&gt;0.000</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="stiffness_label">
+              <property name="text">
+               <string>Stiffness - k [N/m]</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="stiffness_lineEdit">
+              <property name="maximumSize">
+               <size>
+                <width>133</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>&gt;0.000</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="damping_label">
+              <property name="text">
+               <string>Damping - c [%]</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="damping_lineEdit">
+              <property name="maximumSize">
+               <size>
+                <width>133</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="placeholderText">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="initial_displacement_label">
+              <property name="text">
+               <string>Initial displacement - u [m]</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="initial_displacement_lineEdit">
+              <property name="maximumSize">
+               <size>
+                <width>133</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="placeholderText">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="initial_velocity_label">
+              <property name="text">
+               <string>Initial velocity - v [m/s]</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="initial_velocity_lineEdit">
+              <property name="maximumSize">
+               <size>
+                <width>133</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="placeholderText">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="end_time_label">
+              <property name="text">
+               <string>End time - t [s]</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="end_time_lineEdit">
+              <property name="maximumSize">
+               <size>
+                <width>133</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>&gt;0.000</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="time_step_label">
+              <property name="text">
+               <string>Time step - dt [s]</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="time_step_lineEdit">
+              <property name="maximumSize">
+               <size>
+                <width>133</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>&gt;0.000</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="excitation_force_label">
+              <property name="text">
+               <string>Excitation force - f(t)</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPlainTextEdit" name="excitation_force_plainTextEdit">
+              <property name="maximumSize">
+               <size>
+                <width>133</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="placeholderText">
+               <string>e.g. 100*sin(1.2*t) if t &lt; 60 else 0</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="widget" native="true">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>540</y>
+           <width>141</width>
+           <height>39</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>2</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>7</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QProgressBar" name="progressBar">
+            <property name="value">
+             <number>24</number>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QWidget" name="mplWidget" native="true">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(0, 0, 0);</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>618</width>
+          <height>0</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="1">
+       <widget class="QGroupBox" name="plot_groupBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>65</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Plot:</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>279</width>
+           <height>52</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="plot_gridLayout">
+          <item row="0" column="0">
+           <layout class="QVBoxLayout" name="plot_data_verticalLayout">
+            <item>
+             <widget class="QRadioButton" name="displacement_radioButton">
+              <property name="text">
+               <string>Displacement</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="velocity_radioButton">
+              <property name="text">
+               <string>Velocity</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="1">
+           <layout class="QVBoxLayout" name="plot_method_verticalLayout">
+            <item>
+             <widget class="QCheckBox" name="RungeKutta4th_checkBox">
+              <property name="text">
+               <string>Runge Kutta 4th</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="ForwardEuler_checkBox">
+              <property name="text">
+               <string>Forward Euler</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="2">
+           <layout class="QVBoxLayout" name="plot_method_verticalLayout_7">
+            <item>
+             <widget class="QCheckBox" name="LeapFrog_checkBox">
+              <property name="text">
+               <string>Leap Frog</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="Newmark_checkBox">
+              <property name="text">
+               <string>Newmark</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
